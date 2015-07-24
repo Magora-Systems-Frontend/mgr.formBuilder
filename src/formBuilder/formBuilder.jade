@@ -1,0 +1,8 @@
+form(name="formBuilderCtrl.{{formBuilderCtrl.formName}}" ng-submit="formBuilderCtrl.submit()")
+    mgr-form-builder-field(
+    ng-repeat="(fieldName, field) in formBuilderCtrl.model.attr"
+    form="formBuilderCtrl[formBuilderCtrl.formName]"
+    field="formBuilderCtrl.model.attr[fieldName]"
+    )
+    button(type="submit {{::formBuilderCtrl.model.buttons.submit.className}}")
+        span {{::formBuilderCtrl.model.buttons.submit.text}}

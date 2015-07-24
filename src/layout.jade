@@ -1,0 +1,22 @@
+doctype html
+html(lang="en" ng-app="demoApp")
+    head
+        base(href="/")
+        meta(charset="UTF-8")
+        include copyright
+        style
+            include ../bower_components/bootstrap/dist/css/bootstrap.min.css
+            include ../bower_components/mgr-validation/dist/mgr-validation.css
+            include ../public/application.css
+    body
+        div(ng-controller="demoCtrl as ctrl")
+            mgr-form-builder(model="ctrl.model")
+
+        script(type='text/javascript')
+            include ../bower_components/angular/angular.min.js
+            include ../bower_components/mgr-validation/dist/mgr-validation.js
+
+        script(type='text/javascript')
+            include ../public/application.js
+            include ../public/templates.js
+

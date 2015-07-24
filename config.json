@@ -1,0 +1,56 @@
+{
+  "public": "./public",
+  "isProduction": false,
+  "stylus": {
+    "src": ["./src/**/*.styl"],
+    "dst": "application.css"
+  },
+  "javascript": {
+    "src": [
+      "./src/**/*.js"
+    ],
+    "dst": "application.js"
+  },
+  "templates": {
+    "params": {
+      "module": "mgr.formBuilder"
+    },
+    "src": [
+      "./src/**/*.jade",
+      "!src/layout.jade",
+      "!src/copyright.jade"
+    ],
+    "dst": "templates.js"
+  },
+  "layout": {
+    "src": ["./src/layout.jade"],
+    "watch": [
+      "./public/application.css",
+      "./public/application.js",
+      "./public/templates.js"
+    ],
+    "dst": "index.html"
+  },
+  "fonts": {
+    "src": [
+      "./src/fonts/*.*",
+      "./bower_components/bootstrap/fonts/*.*"
+    ],
+    "dst": "/fonts"
+  },
+  "build": [
+    "stylus",
+    "javascript",
+    "templates",
+    "layout",
+    "fonts"
+  ],
+  "webServer": {
+    "server": {
+      "livereload": true,
+      "port": 8080,
+      "open": false,
+      "fallback": "index.html"
+    }
+  }
+}
