@@ -14,24 +14,34 @@
             replace: true,
             scope: {
                 model: '=',
-                formName: '='
+                formName: '=',
+                templateUrl: '@'
             },
-            templateUrl: 'formBuilder/formBuilder.html',
+            templateUrl: function (el, attr) {
+                if (attr.templateUrl) {
+                    return attr.templateUrl;
+                }
+                return 'formBuilder/formBuilder.html';
+            },
             bindToController: true,
             controllerAs: 'formBuilderCtrl',
             controller: function () {
 
                 var formBuilderCtrl = this;
 
+                formBuilderCtrl.getTemplateUrl = function(field){
+                    return field.templateUrl;
+                };
+
                 formBuilderCtrl.formName =
                     formBuilderCtrl.formName === undefined ?
                     'form_' + Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
-                    : formBuilderCtrl.formName;
+                        : formBuilderCtrl.formName;
 
 
-                formBuilderCtrl.submit = function(){
+                formBuilderCtrl.submit = function () {
 
-                    if(!formBuilderCtrl.model.submit){
+                    if (!formBuilderCtrl.model.submit) {
                         return false;
                     }
 

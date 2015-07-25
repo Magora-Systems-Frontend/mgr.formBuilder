@@ -11,10 +11,11 @@
     demoCtrl.$inject = [];
 
     function demoCtrl() {
+
         this.model = {
             url: 'sign-in',
             submit: function (data) {
-                console.log("submit", data)
+
             },
             rules: {
                 email: {
@@ -33,6 +34,7 @@
                     validators: ['required', 'email']
                 },
                 gender: {
+                    templateUrl: 'field.html',
                     type: 'select',
                     value: 'man',
                     options: [{

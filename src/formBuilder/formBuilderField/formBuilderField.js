@@ -8,9 +8,9 @@
         ])
         .directive('mgrFormBuilderField', formBuilderField);
 
-    formBuilderField.$inject = ['$compile'];
+    formBuilderField.$inject = ['$compile', '$parse'];
 
-    function formBuilderField($compile) {
+    function formBuilderField($compile, $parse) {
 
         function generateField(field) {
 
@@ -48,8 +48,8 @@
                     .validators
                     .forEach(function (item) {
                         if (typeof item === 'string') {
-                            field.HTML += ' ' + item
-                        } else if (typeof item === 'array') {
+                            field.HTML += ' ' + item;
+                        } else if (item instanceof Array) {
                             field.HTML += ' ' + item[0] + '="' + item[1] + '"';
                         } else if (typeof item === 'object') {
                             field.HTML += ' ' + item.method;
@@ -80,9 +80,18 @@
             replace: true,
             scope: {
                 field: '=',
-                form: "="
+                form: "=",
+                templateUrl: '=',
+                templatePath: '='
             },
-            templateUrl: 'formBuilder/formBuilderField/formBuilderField.html',
+            templateUrl: function (el, attr){
+
+                if (attr.templateUrl) {
+                    return attr.templateUrl;
+                }
+
+                return 'formBuilder/formBuilderField/formBuilderField.html';
+            },
             bindToController: true,
             controllerAs: 'formBuilderFieldCtrl',
             link: function ($scope, $elm) {
